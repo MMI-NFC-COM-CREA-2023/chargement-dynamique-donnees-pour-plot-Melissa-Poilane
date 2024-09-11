@@ -38,62 +38,67 @@
 
         </section>
     </main>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
+    <script>
 
-    <script type="module">
-        import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
+        async function Asyncf() {
         const dataResponse = await fetch("./dataCorected.json");
         const data = await dataResponse.json();
         console.log(data);
-  
+
         const plot = Plot.plot({
-          x: { grid: true, label: "Années" },
-          y: { grid: true, label: "Gain en euros" },
-          color: { legend: true },
-          title: "Evolution des gains du vainqueur au grand Chelem de 1968 à 2022",
-          marginLeft: 75,
-          marks: [
-              Plot.lineY(data, {
-              x: "YEAR",
-              y: "WINNER_PRIZE",
-              stroke: "TOURNAMENT",
-              tip: true
-              })
-          ]
-          });
-          const div = document.querySelector("#myDiv1");
-          div.append(plot);
-  
-          const dataResponse1 = await fetch("mens_points.json");
-          const data1 = await dataResponse1.json();
-          console.log(data1);
-  
-          const plot1 = Plot.plot({
-  color: { legend: true },
-  title:
-    "Domination du Big three de 2002 à 2022 sur les tournois de grand Chelem",
-  subtitle:
-    "Nombre de victoires par tournoi du grand chelem et par joueur entre 2002 et 2022",
-  marginLeft: 150,
-  height: 500,
-  x: { label: "Tournois" },
-  y: { label: "Vainqueurs", grid: true,  },
-  r: {
-    
-  },
-  marks: [
-    Plot.dot(
-      data1,
-      Plot.group(
-        { r: "count" },
-        { x: "TOURNAMENT", y: "WINNER", fill: "TOURNAMENT", tip: true }
-      )
-    )
-  ]
-})
-          const div1 = document.querySelector("#myDiv2");
-          div1.append(plot1);
-  
-      </script>
+            x: { grid: true, label: "Années" },
+            y: { grid: true, label: "Gain en euros" },
+            color: { legend: true },
+            title: "Evolution des gains du vainqueur au grand Chelem de 1968 à 2022",
+            marginLeft: 75,
+            marks: [
+                Plot.lineY(data, {
+                    x: "YEAR",
+                    y: "WINNER_PRIZE",
+                    stroke: "TOURNAMENT",
+                    tip: true
+                })
+            ]
+        });
+        const div = document.querySelector("#myDiv1");
+        div.append(plot);
+
+        const dataResponse1 = await fetch("mens_points.json");
+        const data1 = await dataResponse1.json();
+        console.log(data1);
+
+        const plot1 = Plot.plot({
+            color: { legend: true },
+            title:
+                "Domination du Big three de 2002 à 2022 sur les tournois de grand Chelem",
+            subtitle:
+                "Nombre de victoires par tournoi du grand chelem et par joueur entre 2002 et 2022",
+            marginLeft: 150,
+            height: 500,
+            x: { label: "Tournois" },
+            y: { label: "Vainqueurs", grid: true },
+            r: {
+
+            },
+            marks: [
+                Plot.dot(
+                    data1,
+                    Plot.group(
+                        { r: "count" },
+                        { x: "TOURNAMENT", y: "WINNER", fill: "TOURNAMENT", tip: true }
+                    )
+                )
+            ]
+        })
+        const div1 = document.querySelector("#myDiv2");
+        div1.append(plot1);
+    }
+
+    Asyncf();
+
+    </script>
 
 </body>
 </html>
