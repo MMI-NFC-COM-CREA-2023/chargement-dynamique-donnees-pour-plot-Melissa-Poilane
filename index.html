@@ -1,28 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr" x-data="{menuIsOpen: false}" :class="menuIsOpen && 'noscroll'">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TP2</title>
-  
+<link rel="stylesheet" href="styles.css">
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#graphique1">Graphique 1</a></li>
-                <li><a href="#graphique2">Graphique 2</a></li>
-            </ul>
-        </nav>
+    <header class="header" >
+        
+        <div>
+            <button class="header__menu-btn menu-btn" aria-label="Menu" aria-controls="mainNav"
+                @click="menuIsOpen = !menuIsOpen" :class="menuIsOpen && 'menu-btn--open'">
+                <span class="menu-btn__hamburger"></span>
+            </button>
+
+            <nav class="header__menu menu" id="mainNav" :class="menuIsOpen && 'menu--open'">
+                <ul class="menu__liste list-unstyled">
+                    <li class="menu__titre">
+                        <a @click="menuIsOpen = !menuIsOpen" class="menu__lien" href="#graphique1">Graphique 1</a>
+                    </li>
+                    <li class="menu__titre">
+                        <a @click="menuIsOpen = !menuIsOpen" class="menu__lien" href="#graphique2">Graphique 2</a>
+                    </li>
+                   
+                </ul>
+            </nav>
+        </div>
     </header>
 
   
     <main>
         <section id="graphique1">
             <h2>Graphique 1</h2>
-            <p>Lorem ipsum dolor sit amet. Aut tempora quibusdam ut repellendus soluta 33 aliquid quis At laboriosam modi sit dicta quos sed recusandae omnis.</p>
+           <p>Ce graphique présente l'évolution des gains en Euros attribués aux vainqueurs des tournois de Grand Chelem de 1968 à 2022.</p>
+           <p>Depuis l'introduction de l'Open Era en 1968, les récompenses financières des tournois majeurs ont connu une augmentation significative, reflétant non seulement la croissance des revenus du sport, mais aussi la reconnaissance accrue des performances exceptionnelles des joueurs.</p>
+           <p>Au fil des décennies, les augmentations des gains ont varié en fonction des politiques des tournois, des fluctuations économiques et des demandes croissantes des joueurs pour des primes plus élevées. Les tournées de Wimbledon, de l'US Open, de l'Open d'Australie et de Roland-Garros ont toutes vu des ajustements notables dans les montants des prix, illustrant l'évolution de l'importance économique du tennis sur la scène internationale.</p>
+           <p>Ce graphique offre une vue d'ensemble précieuse sur la façon dont les récompenses monétaires ont évolué et souligne la tendance croissante à valoriser le succès des vainqueurs des Grands Chelems au fil du temps.</p>
+           <h3>Fun fact</h3>
+           <p>On peut observer une chute des gains de la France de 2001 à 2002, il s'agit en fait du passage à l'euro, qui fausse donc les données de l'évolution des gains français avant les années 2000.</p>
             <figure>
-                <figcaption>Graph 1</figcaption>
                 <div id="myDiv1"></div>
             </figure>
 
@@ -30,9 +48,11 @@
 
         <section id="graphique2">
             <h2>Graphique 2</h2>
-            <p>Sit consectetur sunt vel quia tenetur non corrupti architecto qui nihil eaque ut voluptatibus debitis.</p>
+            <p>Depuis l'année 2002 jusqu'en 2022, le paysage du tennis mondial a été largement dominé par ce qu'on appelle communément le "Big Three", composé de Roger Federer, Rafael Nadal et Novak Djokovic. Ce graphique illustre de manière éloquente la répartition des victoires par joueur lors des tournois de Grand Chelem durant cette période.</p>
+            <p>Roger Federer, légendaire par sa précision et son style fluide, a marqué de son empreinte plusieurs éditions des tournois majeurs, particulièrement à Wimbledon et à l'US Open. Rafael Nadal, maître incontesté de la terre battue, a dominé sans équivoque à Roland-Garros, affichant une détermination et une puissance redoutables. Quant à Novak Djokovic, son agilité et sa résilience l'ont mené à de multiples triomphes à l'Open d'Australie et à Wimbledon.</p>
+            <p>Ce graphique met en lumière non seulement la suprématie de ces grands champions mais aussi leur capacité à maintenir une excellence constante sur la scène internationale du tennis pendant plus de deux décennies.</p>
             <figure>
-                <figcaption>Graph 2</figcaption>
+                
                 <div id="myDiv2"></div>
             </figure>
 
@@ -51,7 +71,10 @@
             x: { grid: true, label: "Années" },
             y: { grid: true, label: "Gain en euros" },
             color: { legend: true },
-            title: "Evolution des gains du vainqueur au grand Chelem de 1968 à 2022",
+            title: "Évolution des gains du vainqueur en grand chelem",
+            subtitle:
+                "Évolution des gains du vainqueur en Euros pour chaque tournoi du grand chelem de 1968 à 2022",
+            
             marginLeft: 75,
             marks: [
                 Plot.lineY(data, {
