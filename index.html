@@ -23,7 +23,7 @@
             <p>Lorem ipsum dolor sit amet. Aut tempora quibusdam ut repellendus soluta 33 aliquid quis At laboriosam modi sit dicta quos sed recusandae omnis.</p>
             <figure>
                 <figcaption>Graph 1</figcaption>
-                <div id="myDiv"></div>
+                <div id="myDiv1"></div>
             </figure>
 
         </section>
@@ -33,7 +33,7 @@
             <p>Sit consectetur sunt vel quia tenetur non corrupti architecto qui nihil eaque ut voluptatibus debitis.</p>
             <figure>
                 <figcaption>Graph 2</figcaption>
-                <div id="myDiv"></div>
+                <div id="myDiv2"></div>
             </figure>
 
         </section>
@@ -60,7 +60,7 @@
               })
           ]
           });
-          const div = document.querySelector("#graphique1");
+          const div = document.querySelector("#myDiv1");
           div.append(plot);
   
           const dataResponse1 = await fetch("mens_points.json");
@@ -90,7 +90,7 @@
     )
   ]
 })
-          const div1 = document.querySelector("#graphique2");
+          const div1 = document.querySelector("#myDiv2");
           div1.append(plot1);
   
       </script>
